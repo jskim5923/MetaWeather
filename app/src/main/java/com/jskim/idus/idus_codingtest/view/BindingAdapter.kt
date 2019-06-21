@@ -29,10 +29,4 @@ object BindingAdapter {
             (recyclerView.adapter as WeatherRecyclerAdapter).updateItem(list)
         }
     }
-
-    @JvmStatic
-    @BindingAdapter("itemDecoration")
-    fun RecyclerView.addItemDecoration(orientation: Int) {
-        addItemDecoration(DividerItemDecoration(context, orientation))
-    }
 }

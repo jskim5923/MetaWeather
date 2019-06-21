@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Idus-codingTest</string>
+    <string name="local_weather">Local Weather</string>
+    <string name="local">Local</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="today">Today</string>
+    <string name="tempFormat">%.0f\u2103</string>
+    <string name="humidityFormat">%d%%</string>
+    <string name="test">%d</string>
 </resources>

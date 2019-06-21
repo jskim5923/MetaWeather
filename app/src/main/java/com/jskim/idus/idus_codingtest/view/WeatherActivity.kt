@@ -21,8 +21,6 @@ class WeatherActivity : BaseActivity<ActivityWeatherBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
-        viewModel.getWeatherList()
-
     }
 
     private fun init() {

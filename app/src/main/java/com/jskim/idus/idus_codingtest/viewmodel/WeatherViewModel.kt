@@ -67,6 +67,7 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     fun swipeRefresh() {
         _isRefresh.call()
+        _swipeLayoutRefreshing.value = true
         getWeatherList()
     }
 }

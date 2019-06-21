@@ -49,6 +49,10 @@ ext {
             koin     : [
                     release                     : '2.0.0-rc-1',
                     debug                       : '2.0.0-GA'
-            ]
+            ],
+
+            rxjava2  : '2.1.13',
+
+            rxandroid: '2.0.2'
     ]
 }

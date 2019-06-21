@@ -33,7 +33,7 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
     val swipeLayoutRefreshing: LiveData<Boolean>
         get() = _swipeLayoutRefreshing
 
-    private fun getWeatherList() {
+    fun getWeatherList() {
         val list = ArrayList<Weather>()
         addDisposable(
                 repository.getLocationSearch("se")

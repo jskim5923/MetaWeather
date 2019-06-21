@@ -1,21 +1,18 @@
-package com.jskim.idus.idus_codingtest
+package com.jskim.idus.idus_codingtest.view
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie_search.base.BaseActivity
+import com.jskim.idus.idus_codingtest.R
 import com.jskim.idus.idus_codingtest.adapter.WeatherRecyclerAdapter
-import com.jskim.idus.idus_codingtest.databinding.ActivityMainBinding
-import com.jskim.idus.idus_codingtest.model.ConsolidatedWeather
-import com.jskim.idus.idus_codingtest.model.Weather
+import com.jskim.idus.idus_codingtest.databinding.ActivityWeatherBinding
 import com.jskim.idus.idus_codingtest.viewmodel.WeatherViewModel
 import com.jskim.idus.idus_codingtest.viewmodel.WeatherViewModelFactory
 import org.koin.android.ext.android.inject
 
-class MainActivity : BaseActivity<ActivityMainBinding>() {
+class WeatherActivity : BaseActivity<ActivityWeatherBinding>() {
     override val layoutResourceId: Int
-        get() = R.layout.activity_main
+        get() = R.layout.activity_weather
 
     private lateinit var viewModel: WeatherViewModel
 
@@ -31,8 +28,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private fun init() {
         viewModel = ViewModelProviders.of(this, weatherViewModelFactory).get(WeatherViewModel::class.java)
         dataBinding.run {
-            lifecycleOwner = this@MainActivity
-            this.viewModel = this@MainActivity.viewModel
+            lifecycleOwner = this@WeatherActivity
+            this.viewModel = this@WeatherActivity.viewModel
             dataBinding.recyclerView.apply {
                 adapter = WeatherRecyclerAdapter()
             }

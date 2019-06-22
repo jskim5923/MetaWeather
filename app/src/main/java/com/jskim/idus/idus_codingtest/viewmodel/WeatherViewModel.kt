@@ -15,8 +15,6 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     private val _showProgress = MutableLiveData<Boolean>()
 
-    private val _isRefresh = SingleLiveEvent<Boolean>()
-
     private val _swipeLayoutRefreshing = MutableLiveData<Boolean>()
 
     private val _networkErrorMessage = MutableLiveData<String>()
@@ -28,10 +26,6 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     val showProgress: LiveData<Boolean>
         get() = _showProgress
-
-    val isRefresh: LiveData<Boolean>
-        get() = _isRefresh
-
 
     val swipeLayoutRefreshing: LiveData<Boolean>
         get() = _swipeLayoutRefreshing
@@ -75,7 +69,6 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
     }
 
     fun swipeRefresh() {
-        _isRefresh.call()
         _swipeLayoutRefreshing.value = true
         refresh(false)
 

@@ -14,16 +14,16 @@ const val baseUrl = "https://www.metaweather.com/"
 val apiModule = module {
     single {
         Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(
-                        OkHttpClient.Builder()
-                                .addInterceptor(get(named("loggingInterceptor")))
-                                .build()
-                )
-                .build()
-                .create(Api::class.java)
+            .baseUrl(baseUrl)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(get(named("loggingInterceptor")))
+                    .build()
+            )
+            .build()
+            .create(Api::class.java)
     }
 
     single(named("loggingInterceptor")) {

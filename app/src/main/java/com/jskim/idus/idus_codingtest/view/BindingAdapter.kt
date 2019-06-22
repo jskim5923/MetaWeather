@@ -1,9 +1,7 @@
 package com.jskim.idus.idus_codingtest.view
 
-import android.util.Log
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jskim.idus.idus_codingtest.adapter.WeatherRecyclerAdapter
@@ -17,8 +15,8 @@ object BindingAdapter {
         context.let {
             val id = it.resources.getIdentifier("ic_$name", "drawable", it.packageName)
             Glide.with(context)
-                    .load(id)
-                    .into(this)
+                .load(id)
+                .into(this)
         }
     }
 

@@ -1,6 +1,5 @@
 package com.example.movie_search.base
 
-import androidx.databinding.library.baseAdapters.BR
 import androidx.recyclerview.widget.RecyclerView
 
 

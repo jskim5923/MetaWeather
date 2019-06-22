@@ -1,6 +1,5 @@
 package com.jskim.idus.idus_codingtest
 
-import com.jskim.idus.idus_codingtest.model.Location
 import com.jskim.idus.idus_codingtest.model.LocationSearch
 import com.jskim.idus.idus_codingtest.model.Weather
 import io.reactivex.Single

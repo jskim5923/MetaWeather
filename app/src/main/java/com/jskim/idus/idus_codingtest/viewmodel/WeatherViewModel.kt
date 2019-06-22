@@ -2,7 +2,6 @@ package com.jskim.idus.idus_codingtest.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.movie_search.util.SingleLiveEvent
 import com.jskim.idus.idus_codingtest.base.DisposableViewModel
 import com.jskim.idus.idus_codingtest.model.Repository
 import com.jskim.idus.idus_codingtest.model.Weather
@@ -44,27 +43,27 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
     fun getWeatherList() {
         val list = ArrayList<Weather>()
         addDisposable(
-                repository.getLocationSearch("se")
-                        .subscribeOn(Schedulers.io())
-                        .flattenAsObservable { it }
-                        .flatMap {
-                            repository.getLocation(it.woeid.toString()).toObservable()
-                        }
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ response ->
-                            list.add(response)
-                        }, { errorResponse ->
-                            _showProgress.value = false
-                            _showNetworkErrorLayout.value = true
-                            if (errorResponse is HttpException) {
-                                _networkErrorMessage.value = errorResponse.code().toString()
-                            }
-                        }, {
-                            _weatherList.value = list
-                            _swipeLayoutRefreshing.value = false
-                            _showProgress.value = false
+            repository.getLocationSearch("se")
+                .subscribeOn(Schedulers.io())
+                .flattenAsObservable { it }
+                .flatMap {
+                    repository.getLocation(it.woeid.toString()).toObservable()
+                }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ response ->
+                    list.add(response)
+                }, { errorResponse ->
+                    _showProgress.value = false
+                    _showNetworkErrorLayout.value = true
+                    if (errorResponse is HttpException) {
+                        _networkErrorMessage.value = errorResponse.code().toString()
+                    }
+                }, {
+                    _weatherList.value = list
+                    _swipeLayoutRefreshing.value = false
+                    _showProgress.value = false
 
-                        })
+                })
         )
     }
 
@@ -74,7 +73,7 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     }
 
-    fun refresh(isShowProgress:Boolean) {
+    fun refresh(isShowProgress: Boolean) {
         _showNetworkErrorLayout.value = false
         _showProgress.value = isShowProgress
         getWeatherList()

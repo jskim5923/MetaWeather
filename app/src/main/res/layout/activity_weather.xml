@@ -42,6 +42,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="5dp"
+            android:visibility="@{safeUnbox(viewModel.showSwipeRefreshLayout) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -82,9 +83,9 @@
 
             <TextView
                 android:id="@+id/errorMessage"
+                style="@style/breakStrategy_balanced"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/breakStrategy_balanced"
                 android:gravity="center"
                 android:text="@{@string/networkError(viewModel.networkErrorMessage)}" />
 

@@ -1,5 +1,6 @@
 package com.jskim.idus.idus_codingtest.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jskim.idus.idus_codingtest.base.DisposableViewModel
@@ -14,6 +15,8 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     private val _showProgress = MutableLiveData<Boolean>()
 
+    private val _showSwipeRefreshLayout = MutableLiveData<Boolean>()
+
     private val _swipeLayoutRefreshing = MutableLiveData<Boolean>()
 
     private val _networkErrorMessage = MutableLiveData<String>()
@@ -25,6 +28,9 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     val showProgress: LiveData<Boolean>
         get() = _showProgress
+
+    val showSwipeRefreshLayout: LiveData<Boolean>
+        get() = _showSwipeRefreshLayout
 
     val swipeLayoutRefreshing: LiveData<Boolean>
         get() = _swipeLayoutRefreshing
@@ -55,9 +61,11 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
                 }, { errorResponse ->
                     _showProgress.value = false
                     _showNetworkErrorLayout.value = true
-                     _networkErrorMessage.value = errorResponse.message
+                    _networkErrorMessage.value = errorResponse.message
+                    _showSwipeRefreshLayout.value = false
                 }, {
                     _weatherList.value = list
+                    _showSwipeRefreshLayout.value = true
                     _swipeLayoutRefreshing.value = false
                     _showProgress.value = false
 

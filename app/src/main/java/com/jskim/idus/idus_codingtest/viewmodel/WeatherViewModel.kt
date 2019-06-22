@@ -55,9 +55,7 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
                 }, { errorResponse ->
                     _showProgress.value = false
                     _showNetworkErrorLayout.value = true
-                    if (errorResponse is HttpException) {
-                        _networkErrorMessage.value = errorResponse.message
-                    }
+                     _networkErrorMessage.value = errorResponse.message
                 }, {
                     _weatherList.value = list
                     _swipeLayoutRefreshing.value = false

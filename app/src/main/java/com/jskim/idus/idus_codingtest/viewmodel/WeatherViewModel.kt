@@ -19,6 +19,9 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     private val _swipeLayoutRefreshing = MutableLiveData<Boolean>()
 
+    private val _networkErrorMessage = MutableLiveData<String>()
+
+    private val _showNetworkErrorLayout = MutableLiveData<Boolean>()
 
     val weatherList: LiveData<List<Weather>>
         get() = _weatherList
@@ -32,6 +35,12 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
 
     val swipeLayoutRefreshing: LiveData<Boolean>
         get() = _swipeLayoutRefreshing
+
+    val networkErrorMessage: LiveData<String>
+        get() = _networkErrorMessage
+
+    val showNetworkErrorLayout: LiveData<Boolean>
+        get() = _showNetworkErrorLayout
 
     init {
         _showProgress.value = true
@@ -52,9 +61,9 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
                             list.add(response)
                         }, { errorResponse ->
                             _showProgress.value = false
+                            _showNetworkErrorLayout.value = true
                             if (errorResponse is HttpException) {
-                                errorResponse.response()?.errorBody()?.run {
-                                }
+                                _networkErrorMessage.value = errorResponse.code().toString()
                             }
                         }, {
                             _weatherList.value = list
@@ -68,6 +77,13 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
     fun swipeRefresh() {
         _isRefresh.call()
         _swipeLayoutRefreshing.value = true
+        refresh(false)
+
+    }
+
+    fun refresh(isShowProgress:Boolean) {
+        _showNetworkErrorLayout.value = false
+        _showProgress.value = isShowProgress
         getWeatherList()
     }
 }

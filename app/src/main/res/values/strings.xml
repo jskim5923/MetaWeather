@@ -7,4 +7,6 @@
     <string name="tempFormat">%.0f\u2103</string>
     <string name="humidityFormat">%d%%</string>
     <string name="test">%d</string>
+    <string name="refresh">새로고침</string>
+    <string name="networkError">서버요청중에 오류가 발생했습니다.\n %s</string>
 </resources>

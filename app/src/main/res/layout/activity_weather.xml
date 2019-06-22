@@ -84,6 +84,7 @@
                 android:id="@+id/errorMessage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/breakStrategy_balanced"
                 android:gravity="center"
                 android:text="@{@string/networkError(viewModel.networkErrorMessage)}" />
 

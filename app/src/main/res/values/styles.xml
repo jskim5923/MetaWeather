@@ -8,9 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="breakStrategy" parent="Widget.AppCompat.TextView">
+    <style name="breakStrategy_high_quality" parent="Widget.AppCompat.TextView">
         <item name="android:hyphenationFrequency" tools:targetApi="m">full</item>
         <item name="android:breakStrategy" tools:targetApi="m">high_quality</item>
+    </style>
+    <style name="breakStrategy_balanced" parent="Widget.AppCompat.TextView">
+        <item name="android:hyphenationFrequency" tools:targetApi="m">full</item>
+        <item name="android:breakStrategy" tools:targetApi="m">balanced</item>
     </style>
 
 </resources>

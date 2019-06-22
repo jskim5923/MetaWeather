@@ -40,7 +40,7 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
         getWeatherList()
     }
 
-    fun getWeatherList() {
+    private fun getWeatherList() {
         val list = ArrayList<Weather>()
         addDisposable(
             repository.getLocationSearch("se")

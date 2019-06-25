@@ -1,9 +1,9 @@
 package com.jskim.idus.idus_codingtest.model
 
-data class ConsolidatedWeather(
-    val weather_state_name: String,
-    val weather_state_abbr: String,
-    val the_temp: Double,
-    val humidity: Int,
-    val applicable_date: String
+data class ConsolidatedWeather @JvmOverloads constructor(
+    var weather_state_name: String = "",
+    var weather_state_abbr: String = "",
+    var the_temp: Double = 0.0,
+    var humidity: Int = 0,
+    var applicable_date: String = ""
 )

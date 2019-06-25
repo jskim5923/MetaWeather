@@ -1,5 +1,6 @@
 package com.jskim.idus.idus_codingtest.view
 
+import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,14 +11,19 @@ import kotlinx.android.synthetic.main.activity_weather.view.*
 
 object BindingAdapter {
     @JvmStatic
-    @BindingAdapter("icon")
-    fun ImageView.loadIcon(name: String) {
-        context.let {
-            val id = it.resources.getIdentifier("ic_$name", "drawable", it.packageName)
-            Glide.with(context)
-                .load(id)
-                .into(this)
-        }
+        @BindingAdapter(value = ["icon", "placeHolder"], requireAll = false)
+    fun ImageView.loadIcon(name: String, placeHolder:Drawable?) {
+        val imageId = context.resources.getIdentifier(
+            "ic_$name",
+            "drawable",
+            context.packageName
+        )
+
+        Glide.with(context)
+            .load(imageId)
+            .placeholder(placeHolder)
+            .centerCrop()
+            .into(this)
     }
 
     @JvmStatic

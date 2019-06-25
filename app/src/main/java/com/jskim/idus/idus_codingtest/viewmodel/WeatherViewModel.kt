@@ -1,6 +1,5 @@
 package com.jskim.idus.idus_codingtest.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.jskim.idus.idus_codingtest.base.DisposableViewModel
@@ -8,7 +7,6 @@ import com.jskim.idus.idus_codingtest.model.Repository
 import com.jskim.idus.idus_codingtest.model.Weather
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import retrofit2.HttpException
 
 class WeatherViewModel(private val repository: Repository) : DisposableViewModel() {
     private val _weatherList = MutableLiveData<List<Weather>>()
@@ -47,7 +45,6 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
     }
 
     private fun getWeatherList() {
-        val list = ArrayList<Weather>()
         addDisposable(
             repository.getLocationSearch("se")
                 .subscribeOn(Schedulers.io())
@@ -55,20 +52,18 @@ class WeatherViewModel(private val repository: Repository) : DisposableViewModel
                 .flatMap {
                     repository.getLocation(it.woeid.toString()).toObservable()
                 }
+                .toList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
-                    list.add(response)
+                    _weatherList.value = response
+                    _showSwipeRefreshLayout.value = true
+                    _swipeLayoutRefreshing.value = false
+                    _showProgress.value = false
                 }, { errorResponse ->
                     _showProgress.value = false
                     _showNetworkErrorLayout.value = true
                     _networkErrorMessage.value = errorResponse.message
                     _showSwipeRefreshLayout.value = false
-                }, {
-                    _weatherList.value = list
-                    _showSwipeRefreshLayout.value = true
-                    _swipeLayoutRefreshing.value = false
-                    _showProgress.value = false
-
                 })
         )
     }

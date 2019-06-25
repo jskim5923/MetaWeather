@@ -8,8 +8,6 @@
 
         <import type="android.view.View" />
 
-        <import type="androidx.recyclerview.widget.DividerItemDecoration" />
-
         <variable
             name="viewModel"
             type="com.jskim.idus.idus_codingtest.viewmodel.WeatherViewModel" />

@@ -6,7 +6,7 @@
 
         <variable
             name="weather"
-            type="com.jskim.idus.idus_codingtest.model.Weather" />
+            type="com.jskim.weather.model.Weather" />
     </data>
 
     <LinearLayout

@@ -1,4 +1,4 @@
-## Idus Coding Test
+## WeatherApplication
 
 MetaWeather의 open Api를 활용한 날씨 어플리케이션
 
